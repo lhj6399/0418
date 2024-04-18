@@ -1,0 +1,7 @@
+package jdbc;
+
+import java.security.Provider.Service;
+
+public class ProductServiceImpl extends Service {
+
+}

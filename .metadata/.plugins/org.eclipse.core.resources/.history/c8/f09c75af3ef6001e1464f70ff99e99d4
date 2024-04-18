@@ -1,0 +1,45 @@
+package jdbcBoard;
+
+import java.util.List;
+
+public class BoardServiceImpl implements Service {
+
+	private DAO dao; // 인터페이스
+	public BoardServiceImpl() {
+		dao = new BoardDAOImpl(); // 구현체
+	}
+	
+	@Override
+	public int register(BoardVO b) {
+		// 실제 구현 영역
+				System.out.println("register serviceImpl success!!");
+				// 각 DAO에게 저장 요청 
+				// dao 요청시 sql 구문과 비슷하게 메서드명을 작성하는 것이 일반적
+				return dao.insert(b);
+	}
+
+	@Override
+	public List<BoardVO> getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BoardVO getDetail(int pno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int modify(BoardVO b) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int remove(int bno) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

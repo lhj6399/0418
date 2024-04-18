@@ -1,0 +1,109 @@
+package jdbcBoard;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class BoardController {	
+		/*
+		 * Controller <-> Service <-> DAO <-> DB
+		 * Controller 모든 메뉴에 분기처리
+		 */
+	
+		private Scanner scan;
+		private Service svc; 
+		private boolean flag; // 종료변수
+		
+		public BoardController() {
+			scan = new Scanner(System.in);
+			svc = new BoardServiceImpl(); // service 구현체
+			flag = true;
+			printMenu();
+		}
+	
+		private void printMenu() {
+			while(flag) {
+				System.out.println("-- 게시글 관리 프로그램 --");
+				System.out.println("1. 게시글 추가 | 2. 게시글 검색 | 3. 게시글 수정");
+				System.out.println("4. 게시글 삭제 | 5. 게시글 출력 | 6. 종료");
+				System.out.println("메뉴 선택 > ");
+				
+				int menu = scan.nextInt();
+				
+				switch(menu) {
+				case 1: register(); break; // 게시글 추가
+				case 2: detail(); break; // 게시글 검색
+				case 3: modify(); break; // 게시글 수정
+				case 4: remove(); break; // 게시글 삭제
+				case 5: list(); break; // 게시글 출력
+				default: 
+					flag = false;
+					break;
+				}
+			}
+		}
+
+		private void remove() {
+			// 상품삭제 delete from product where pno=?
+			System.out.println("삭제하려는 번호");
+			int bno = scan.nextInt();
+			
+			int isOk = svc.remove(bno);
+			
+			// 잘되면 1, 안되면 0
+			System.out.println("상품 삭제"+( (isOk > 0)?"성공" : "실패") );
+		}
+
+		private void modify() {
+			// 상품내용 수정 update product set pname=?, price=?, madeby=?, where pno=?
+			System.out.println("수정하려는 번호");
+			int bno = scan.nextInt();
+			System.out.println("게시글 제목 : ");
+			scan.nextLine();
+			String title = scan.nextLine();
+			System.out.println("작성자 : ");
+			String writer = scan.nextLine();
+			System.out.println("게시글 내용 : ");
+			scan.nextLine();
+			String content = scan.nextLine();
+			
+			BoardVO p = new BoardVO(bno, title, writer, content);
+			int isOk = svc.modify(p);
+			// 잘되면 1, 안되면 0
+			System.out.println("상품 수정"+( (isOk > 0)?"성공" : "실패") );
+		}
+
+		private void detail() {
+			// 상품 하나의 상세정보 select * form product where pno = ?
+			System.out.println("게시글 번호 > ");
+			int bno = scan.nextInt();
+			BoardVO b = svc.getDetail(bno);
+			System.out.println(b);
+		}
+
+		private void list() {
+			// 상품 리스트 출력 select * from product;
+			List<BoardVO> list = svc.getList();
+			// 출력
+			for(BoardVO b : list) {
+				System.out.println(b);
+			}
+		}
+
+		private void register() {
+			// 게시글 등록
+			System.out.println("게시글 제목 : ");
+			scan.nextLine();
+			String title = scan.nextLine();
+			System.out.println("작성자 : ");
+			String writer = scan.nextLine();
+			System.out.println("게시글 내용 : ");
+			scan.nextLine();
+			String content = scan.nextLine();
+			BoardVO b = new BoardVO(title, writer, content);
+			// service에게 등록을 요청하는 메서드 작성
+			int isOk = svc.register(b);
+			// 잘되면 1, 안되면 0
+			System.out.println("상품 등록"+( (isOk > 0)?"성공" : "실패") );
+			
+		}
+}

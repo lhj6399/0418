@@ -1,0 +1,40 @@
+package word;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Word {
+
+		HashMap<String, String> map = new HashMap();
+		
+		// 단어 추가
+		public void insertWord(Scanner scan) {
+			
+			System.out.print("단어 : ");
+			
+			String word = scan.next();
+			
+			System.out.print("의미 : ");
+			
+			String mean = scan.next();
+			
+			map.put(word, mean);
+			
+			System.out.println("단어 저장 완료");
+		}
+		
+		// 단어 검색 
+		public void searchWord(Scanner scan) {
+			System.out.println("검색할 단어: ");
+			String word = scan.next();
+			if (map.containsKey(word)) {
+				System.out.println("-- 검색 결과 --");
+				System.out.println(word+":"+map.get(word));
+				return;
+			}
+			System.out.println("검색 결과가 없습니다.");
+		}
+		
+		
+	}
+

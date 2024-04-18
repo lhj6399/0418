@@ -1,0 +1,19 @@
+package new02;
+
+class Counter{
+	
+	// 싱글턴으로 객체 만들기
+	private int count;
+	
+	// countMethod() method 생성 // 호출 시 count 1씩 증가 리턴
+}
+
+public class SingletonCount {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// Count 객체 2개 생성. 각각 countMethod()를 호출하여 출력
+
+	}
+
+}

@@ -1,0 +1,13 @@
+package new01;
+
+public class New04 {
+
+	public static void main(String[] args) {
+		/* 단어장
+		 * 단어 : 의미
+		 * map으로 생성
+		 * 입력받을 단어의 개수를 입력받아 개수만큼 map에 추가
+		 * 콘솔에 찍기
+		 */
+	}
+}

@@ -1,0 +1,111 @@
+package board;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
+
+public class Board {
+	 /* 번호, 제목, 내용, 작성자, 작성일
+	 번호가 일치하면 같은 게시물인지 equals 추가
+	  - 객체는 독립적 / 각 객체가 하나의 번호를 참고
+	 번호는 자동 증가 => static
+	 작성일은 오늘 날짜 자동으로 추가
+	 */
+	
+	private static int count; // 자동증가 카운트
+	private int num;
+	private String title;
+	private String content;
+	private String writer;
+	private String registerDate;
+	
+	// 생성자
+	public Board() {
+		count++; // 번호 추가
+		num = count;
+		
+//		Date String 처리
+		Date register = new Date();
+		SimpleDateFormat sh = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		this.registerDate = sh.format(registerDate);
+	}
+	
+	public Board(String title, String content, String writer) {
+		this(); // 위에 있는 내 생성자 호출
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+	}
+	
+	// 번호만 가지는 객체 생성
+	// 번호가 일치하면 같은 게시물인지 equals 추가
+	public Board(int num) {
+		this.num = num;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public String getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(String registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [num=" + num + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", registerDate=" + registerDate + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(num, title, content, writer, registerDate);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Board other = (Board) obj;
+		return num == other.num;
+	}
+	
+	
+	
+}

@@ -1,0 +1,27 @@
+package word;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Word {
+
+		HashMap<String, String> map = new HashMap();
+		
+		// 단어 추가
+		public void insertWord(Scanner scan) {
+			
+			System.out.print("단어 : ");
+			
+			String word = scan.next();
+			
+			System.out.print("의미 : ");
+			
+			String mean = scan.next();
+			
+			map.put(word, mean);
+			
+		}
+		
+		
+	}
+
